@@ -25,3 +25,44 @@ body {
   color: #797979;
   cursor: default;
 }
+
+.units {
+  position: relative;
+  top: -40px;
+  text-decoration: none;
+}
+.day {
+  font-weight: 700;
+}
+.week {
+  margin: 20px 8px;
+}
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #878787;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  background-color: rgb(227, 91, 234);
+  border-color: rgb(227, 91, 234);
+}
+.btn-primary:active {
+  background: white;
+  color: (227, 91, 234);
+  border-color: rgb(227, 91, 234);
+  box-shadow: rgb(227, 91, 234/25%);
+}
+
+.btn-primary:focus {
+  background-color: rgb(227, 91, 234);
+  border-color: rgb(227, 91, 234);
+  box-shadow: rgb(227, 91, 234/25%);
+  color: white;
+}
+
+.form-control:focus {
+  border-color: rgb(227, 91, 234);
+  box-shadow: rgb(227, 91, 234/25%);
+}
