@@ -1,26 +1,49 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
+let currentDate = new Date();
+
+function formatDay(currentDate) {
+  let days = [
+    "Sunday,",
+    "Monday,",
+    "Tuesday,",
+    "Wednesday,",
+    "Thusday,",
+    "Friday,",
+    "Saturday,",
+  ];
+
+  let currentDay = days[currentDate.getDay()];
+
+  return currentDay;
+}
+
+let formattedDay = document.querySelector("#current-day");
+formattedDay.innerHTML = formatDay(currentDate);
+
+function forecastFormatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+function formatHour(currentDate) {
+  let currentHour = currentDate.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
   }
 
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[date.getDay()];
-  return `${day} ${hours}:${minutes}`;
+  let currentMinutes = currentDate.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+
+  let currentTime = `${currentHour}:${currentMinutes} h`;
+
+  return currentTime;
 }
+
+let formattedHour = document.querySelector("#current-hour");
+formattedHour.innerHTML = formatHour(currentDate);
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -29,6 +52,7 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
 }
 celsiusTemperature = response.data.main.temp;
 
@@ -49,11 +73,25 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityElement}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
-function handleSubmit(event) {
+
+search("New York");
+
+function searchButton(event) {
   event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
+  let cityInput = document.querySelector("#city-input");
+  searchSubmited(cityInput.value);
+
+  let h1 = document.querySelector("#city");
+  if (cityInput.value) {
+    h1.innerHTML = `${cityInput.value}`;
+  } else {
+    h1.innerHTML = null;
+    alert("Please type a city");
+  }
 }
+
+let cityForm = document.querySelector("#city-form");
+cityForm.addEventListener("submit", searchButton);
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
@@ -83,5 +121,3 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
-search("New York");
