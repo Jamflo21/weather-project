@@ -2,8 +2,15 @@ body {
   font-family: "Roboto", sans-serif;
   color: #878787;
 }
+.background-app {
+  background-image: url("https://cdna.artstation.com/p/assets/images/images/017/663/252/original/anastasia-kozheko-normal.gif?1645074105");
 
-.project {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.container-project {
   border: 1px solid #dadde1;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 5px 5px;
