@@ -86,7 +86,7 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = "0c779255a2267073f167d084a7d777e2";
+  let apiKey = "6a51ba6e219d9e8e476b42ae2fa4bf30";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -114,25 +114,25 @@ iconElement.setAttribute(
 iconElement.setAttribute("alt", response.data.weather[0].description);
 
 function search(city) {
-  let apiKey = "0c779255a2267073f167d084a7d777e2";
+  let apiKey = "6a51ba6e219d9e8e476b42ae2fa4bf30";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityElement}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
 search("New York");
 
-function searchButton(event) {
+function handleSubmit(event) {
   event.preventDefault();
-  let cityInput = document.querySelector("#city-input");
-  searchSubmited(cityInput.value);
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 
-  let h1 = document.querySelector("#city");
-  if (cityInput.value) {
-    h1.innerHTML = `${cityInput.value}`;
-  } else {
-    h1.innerHTML = null;
-    alert("Please type a city");
-  }
+let h1 = document.querySelector("#city");
+if (cityInput.value) {
+  h1.innerHTML = `${cityInput.value}`;
+} else {
+  h1.innerHTML = null;
+  alert("Please type a city");
 }
 
 let cityForm = document.querySelector("#city-form");
